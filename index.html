@@ -383,12 +383,14 @@ section{
   object-fit:contain;
   display:block;
   background:#000;
+  border-radius:16px;
 
   filter:brightness(.9) saturate(.85);
   transition:filter .6s ease,transform .6s ease;
 }
 .memory-card:hover .memory-photo{
-  filter:brightness(1) saturate(1);transform:scale(1.03);
+  filter:brightness(1) saturate(1);
+  transform:none;
 }
 .memory-caption{
   padding:24px 24px 28px;
