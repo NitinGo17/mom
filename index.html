@@ -798,14 +798,52 @@ function fadeOut(audio, duration = 1500) {
 }
 
 function toggleMusic() {
-  if (!musicStarted) {
-    bgMusic.play().then(() => { musicStarted = true; musicPlaying = true; fadeIn(bgMusic); updateMusicBtn(); }).catch(() => {});
-    return;
-  }
-  if (musicPlaying) { fadeOut(bgMusic); musicPlaying = false; }
-  else { bgMusic.play(); fadeIn(bgMusic); musicPlaying = true; }
-  updateMusicBtn();
+
+    if (!musicStarted) {
+
+        bgMusic.play()
+            .then(() => {
+
+                musicStarted = true;
+                musicPlaying = true;
+
+                fadeIn(bgMusic);
+
+                updateMusicBtn();
+
+                console.log("Music started");
+
+            })
+            .catch((err) => {
+
+                console.log("Playback Error:", err);
+
+            });
+
+        return;
+    }
+
+    if (musicPlaying) {
+
+        fadeOut(bgMusic);
+
+        musicPlaying = false;
+
+    } else {
+
+        bgMusic.play();
+
+        fadeIn(bgMusic);
+
+        musicPlaying = true;
+    }
+
+    updateMusicBtn();
 }
+
+document.addEventListener("click", () => {
+    toggleMusic();
+}, { once: true });
 
 function updateMusicBtn() {
   const btn = document.getElementById('musicBtn');
