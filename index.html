@@ -862,7 +862,10 @@ function startJourney() {
   main.classList.add('visible');
   spawnFloatingHearts();
   // try autoplay music on first interaction
-  bgMusic.play().then(() => { musicStarted = true; musicPlaying = true; fadeIn(bgMusic); updateMusicBtn(); }).catch(() => {});
+  bgMusic.play().then(() => { musicStarted = true; musicPlaying = true; fadeIn(bgMusic); updateMusicBtn(); }).catch((err) => {
+   console.log(err);
+   alert(err);
+}););
 }
 
 /* ══════════════════════
