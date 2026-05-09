@@ -855,17 +855,35 @@ function updateMusicBtn() {
    INTRO
 ══════════════════════ */
 function startJourney() {
+
   const intro = document.getElementById('intro');
   const main = document.getElementById('mainContent');
+
   intro.classList.add('fade-out');
-  setTimeout(() => { intro.style.display = 'none'; }, 1900);
+
+  setTimeout(() => {
+      intro.style.display = 'none';
+  }, 1900);
+
   main.classList.add('visible');
+
   spawnFloatingHearts();
-  // try autoplay music on first interaction
-  bgMusic.play().then(() => { musicStarted = true; musicPlaying = true; fadeIn(bgMusic); updateMusicBtn(); }).catch((err) => {
-   console.log(err);
-   alert(err);
-}););
+
+  if (!musicStarted) {
+
+      bgMusic.play()
+          .then(() => {
+
+              musicStarted = true;
+              musicPlaying = true;
+
+              fadeIn(bgMusic);
+
+              updateMusicBtn();
+
+          })
+          .catch(err => console.log(err));
+  }
 }
 
 /* ══════════════════════
